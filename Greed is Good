@@ -1,0 +1,51 @@
+#include <vector>
+#include <algorithm>
+
+int score(const std::vector<int>& dice)
+{
+  int total(0);
+  
+ for (int i=1; i <=6; i++) 
+  {int num = count (dice.begin(),dice.end(),i);
+     
+     if (i ==1 && num >=3) {total += ((num -3) *100) +1000;}
+        
+     else if ( i==1 && num <3) {total += num*100;}
+   
+     else if (i == 5 && num >=3) {total += ((num-3) *50) +500;}
+   
+     else if (i == 5 && num <3) {total += num*50;}
+   
+     else if (num >=3) {total+= i *100;}
+  
+  }
+  
+  return total;
+}
+
+----------------------------------------------------------------------------------------------
+
+#include <vector>
+#include <algorithm>
+
+int score(const std::vector<int>& dice)
+{
+  int total(0);
+  
+  int numA = count (dice.begin(),dice.end(),1);
+    if (numA >=3) 
+      {numA -= 3;
+       numA *= 100;
+       total += numA + 1000;}
+    else total += numA * 100;
+  
+  int numB= count (dice.begin(), dice.end(),5);
+    if (numB >=3) total += (numB -=3) *50;
+    else total += numB *50;
+  
+ for (int i=2; i <=6; i++) 
+  {int num = count (dice.begin(),dice.end(),i);
+    if (num >=3) total+= i *100;}
+  
+  return total;
+}
