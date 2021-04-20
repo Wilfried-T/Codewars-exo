@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <locale>
+
+using namespace std;
+
+std::string to_camel_case(std::string text)
+{
+  std::string::size_type found = text.find('-');
+
+    while (found != std::string::npos)
+    {
+      text.erase(text.begin() + found);
+      text[found] = toupper(text[found]);
+      found = text.find('-');
+    }
+
+  found=text.find('_');
+
+    while (found != std::string::npos)
+    {
+      text.erase(text.begin() + found);
+      text[found] = toupper(text[found]);
+      found = text.find('_');
+    }
+
+  return text;
+}
